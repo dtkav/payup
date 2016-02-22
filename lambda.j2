@@ -1,0 +1,35 @@
+from __future__ import print_function
+
+import urllib
+import urllib2
+import json
+
+rent = {{ rents }}
+
+def lambda_handler(event, context):
+    url = "{{ slack_webhook_url }}"
+    responses = []
+
+    # notify master of coin
+    data = {"channel": "{{ master_of_coin["slack_name"] }}",
+            "username": "master of coin",
+            "text" : "gathering gold...",
+            "icon_url": "http://f.dtkav.com/baelish.png"}
+    headers={"Content-Type": "application/json"}
+    payload = json.dumps(data)
+    req = urllib2.Request(url, payload, headers)
+    response = urllib2.urlopen(req)
+    responses.append("%s" % response.read())
+
+    # send out reminders
+    for user, amt in rent.items():
+        data = {"channel": user,
+                "username": "master of coin",
+                "text" : "The kingdom has need of your coin. >>><https://venmo.com/{{ master_of_coin["venmo_user"] }}?txn=pay&amount=%s&note=rent|PAY><<<" % str(amt),
+                "icon_url": "http://f.dtkav.com/baelish.png"}
+        headers={"Content-Type": "application/json"}
+        payload = json.dumps(data)
+        req = urllib2.Request(url, payload, headers)
+        response = urllib2.urlopen(req)
+        responses.append("%s" % response.read())
+    return responses

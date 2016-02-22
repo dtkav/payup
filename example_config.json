@@ -1,0 +1,12 @@
+{
+  "slack_webhook_url": "https://hooks.slack.com/services/BLAHBLAH/ASDF/abcd1231413sadf2",
+  "master_of_coin": {
+    "slack_name": "@master_of_coin",
+    "venmo_user": "xyz123"
+  },
+  "rents": {
+    "@user1": 500.0,
+    "@user2": 530.0
+  }
+}
+
