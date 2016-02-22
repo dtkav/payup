@@ -1,4 +1,5 @@
 # payup
+![payup screenshot](http://f.dtkav.com/payup.png)
 ## what is this?
 **payup** is a monthly rent reminder in slack with one-click venmo payment.
 You can use it to split rent among your house-mates.
